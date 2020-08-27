@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2020 - TODAY, Marcel Savegnago - Escodoo
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+<!--    <record model="ir.ui.view" id="escodoo_mis_cashflow_form_view">-->
+<!--        <field name="name">escodoo.mis.cashflow.form (in escodoo_mis_builder_cashflow)</field>-->
+<!--        <field name="model">escodoo.mis.cashflow</field>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <form>-->
+<!--                <header>-->
+<!--                    &lt;!&ndash; TODO &ndash;&gt;-->
+<!--                </header>-->
+<!--                <sheet>-->
+<!--                    &lt;!&ndash; TODO &ndash;&gt;-->
+<!--                    <group>-->
+<!--                        <field name="name"/>-->
+<!--                    </group>-->
+<!--                </sheet>-->
+<!--                <div class="oe_chatter"></div>-->
+<!--            </form>-->
+<!--        </field>-->
+<!--    </record>-->
+
+<!--    <record model="ir.ui.view" id="escodoo_mis_cashflow_search_view">-->
+<!--        <field name="name">escodoo.mis.cashflow.search (in escodoo_mis_builder_cashflow)</field>-->
+<!--        <field name="model">escodoo.mis.cashflow</field>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <search>-->
+<!--                &lt;!&ndash; TODO &ndash;&gt;-->
+<!--            </search>-->
+<!--        </field>-->
+<!--    </record>-->
+
+<!--    <record model="ir.ui.view" id="escodoo_mis_cashflow_tree_view">-->
+<!--        <field name="name">escodoo.mis.cashflow.tree (in escodoo_mis_builder_cashflow)</field>-->
+<!--        <field name="model">escodoo.mis.cashflow</field>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <tree>-->
+<!--                &lt;!&ndash; TODO &ndash;&gt;-->
+<!--                <field name="name"/>-->
+<!--            </tree>-->
+<!--        </field>-->
+<!--    </record>-->
+
+    <record model="ir.ui.view" id="escodoo_mis_cashflow_tree_view">
+        <field name="name">escodoo.mis.cashflow.tree (in escodoo_mis_builder_cashflow)</field>
+        <field name="model">escodoo.mis.cashflow</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="line_type" />
+                <field name="date" />
+                <field name="name" />
+                <field name="account_id" />
+                <field
+                    name="analytic_account_id"
+                    groups="analytic.group_analytic_accounting"
+                />
+                <field
+                    name="analytic_tag_ids"
+                    widget="many2many_tags"
+                    groups="analytic.group_analytic_tags"
+                />
+                <field name="debit" />
+                <field name="credit" />
+            </tree>
+        </field>
+    </record>
+
+</odoo>

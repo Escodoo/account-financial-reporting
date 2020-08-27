@@ -4,43 +4,43 @@
 
 <odoo>
 
-    <record model="ir.ui.view" id="mis_cash_flow_form_view">
-        <field name="name">mis.cash_flow.form (in mis_builder_cash_flow_analytic)</field>
-        <field name="model">mis.cash_flow</field>
-        <field name="inherit_id" ref="mis_builder_cash_flow.mis_cash_flow_form_view"/>
-        <field name="arch" type="xml">
-            <field name="account_id" position="after">
-                <field name="analytic_account_id"/>
-            </field>
-        </field>
-    </record>
+<!--    <record model="ir.ui.view" id="mis_cash_flow_form_view">-->
+<!--        <field name="name">mis.cash_flow.form (in mis_builder_cash_flow_analytic)</field>-->
+<!--        <field name="model">mis.cash_flow</field>-->
+<!--        <field name="inherit_id" ref="mis_builder_cash_flow.mis_cash_flow_form_view"/>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <field name="account_id" position="after">-->
+<!--                <field name="analytic_account_id"/>-->
+<!--            </field>-->
+<!--        </field>-->
+<!--    </record>-->
 
-    <record model="ir.ui.view" id="mis_cash_flow_search_view">
-        <field name="name">mis.cash_flow.search (in mis_builder_cash_flow_analytic)</field>
-        <field name="model">mis.cash_flow</field>
-        <field name="inherit_id" ref="mis_builder_cash_flow.mis_cash_flow_search_view"/>
-        <field name="arch" type="xml">
-            <field name="account_id" position="after">
-                <field name="analytic_account_id"/>
-            </field>
-            <filter name="group_by_account_id" position="after">
-                <filter string="Analytic Account"
-                        name="group_by_analytic_account_id"
-                        context="{'group_by':'analytic_account_id'}"/>
-            </filter>
-        </field>
-    </record>
+<!--    <record model="ir.ui.view" id="mis_cash_flow_search_view">-->
+<!--        <field name="name">mis.cash_flow.search (in mis_builder_cash_flow_analytic)</field>-->
+<!--        <field name="model">mis.cash_flow</field>-->
+<!--        <field name="inherit_id" ref="mis_builder_cash_flow.mis_cash_flow_search_view"/>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <field name="account_id" position="after">-->
+<!--                <field name="analytic_account_id"/>-->
+<!--            </field>-->
+<!--            <filter name="group_by_account_id" position="after">-->
+<!--                <filter string="Analytic Account"-->
+<!--                        name="group_by_analytic_account_id"-->
+<!--                        context="{'group_by':'analytic_account_id'}"/>-->
+<!--            </filter>-->
+<!--        </field>-->
+<!--    </record>-->
 
-    <record model="ir.ui.view" id="mis_cash_flow_tree_view">
-        <field name="name">mis.cash_flow.tree (in mis_builder_cash_flow_analytic)</field>
-        <field name="model">mis.cash_flow</field>
-        <field name="inherit_id" ref="mis_builder_cash_flow.mis_cash_flow_tree_view"/>
-        <field name="arch" type="xml">
-            <field name="account_id" position="after">
-                <field name="analytic_account_id"
-                            domain="[('company_id', '=', company_id)]"/>
-            </field>
-        </field>
-    </record>
+<!--    <record model="ir.ui.view" id="mis_cash_flow_tree_view">-->
+<!--        <field name="name">mis.cash_flow.tree (in mis_builder_cash_flow_analytic)</field>-->
+<!--        <field name="model">mis.cash_flow</field>-->
+<!--        <field name="inherit_id" ref="mis_builder_cash_flow.mis_cash_flow_tree_view"/>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <field name="account_id" position="after">-->
+<!--                <field name="analytic_account_id"-->
+<!--                            domain="[('company_id', '=', company_id)]"/>-->
+<!--            </field>-->
+<!--        </field>-->
+<!--    </record>-->
 
 </odoo>
