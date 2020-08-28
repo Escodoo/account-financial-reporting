@@ -9,9 +9,10 @@
     'license': 'AGPL-3',
     'author': 'Escodoo,Odoo Community Association (OCA)',
     'website': 'https://www.escodoo.com.br',
-    "depends": ["mis_builder_budget", "purchase"],
+    "depends": ["mis_builder_budget", "purchase", "web_timeline"],
 
     'data': [
+        "templates/assets.xml",
         'security/escodoo_mis_cashflow.xml',
         'report/escodoo_mis_cashflow.xml',
         "data/mis_report_style.xml",
