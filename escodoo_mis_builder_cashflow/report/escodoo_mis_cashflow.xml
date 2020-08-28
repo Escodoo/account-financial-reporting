@@ -4,51 +4,35 @@
 
 <odoo>
 
-<!--    <record model="ir.ui.view" id="escodoo_mis_cashflow_form_view">-->
-<!--        <field name="name">escodoo.mis.cashflow.form (in escodoo_mis_builder_cashflow)</field>-->
-<!--        <field name="model">escodoo.mis.cashflow</field>-->
-<!--        <field name="arch" type="xml">-->
-<!--            <form>-->
-<!--                <header>-->
-<!--                    &lt;!&ndash; TODO &ndash;&gt;-->
-<!--                </header>-->
-<!--                <sheet>-->
-<!--                    &lt;!&ndash; TODO &ndash;&gt;-->
-<!--                    <group>-->
-<!--                        <field name="name"/>-->
-<!--                    </group>-->
-<!--                </sheet>-->
-<!--                <div class="oe_chatter"></div>-->
-<!--            </form>-->
-<!--        </field>-->
-<!--    </record>-->
-
-<!--    <record model="ir.ui.view" id="escodoo_mis_cashflow_search_view">-->
-<!--        <field name="name">escodoo.mis.cashflow.search (in escodoo_mis_builder_cashflow)</field>-->
-<!--        <field name="model">escodoo.mis.cashflow</field>-->
-<!--        <field name="arch" type="xml">-->
-<!--            <search>-->
-<!--                &lt;!&ndash; TODO &ndash;&gt;-->
-<!--            </search>-->
-<!--        </field>-->
-<!--    </record>-->
-
-<!--    <record model="ir.ui.view" id="escodoo_mis_cashflow_tree_view">-->
-<!--        <field name="name">escodoo.mis.cashflow.tree (in escodoo_mis_builder_cashflow)</field>-->
-<!--        <field name="model">escodoo.mis.cashflow</field>-->
-<!--        <field name="arch" type="xml">-->
-<!--            <tree>-->
-<!--                &lt;!&ndash; TODO &ndash;&gt;-->
-<!--                <field name="name"/>-->
-<!--            </tree>-->
-<!--        </field>-->
-<!--    </record>-->
+    <record model="ir.ui.view" id="escodoo_mis_cashflow_form_view">
+        <field name="name">escodoo.mis.cashflow.form (in escodoo_mis_builder_cashflow)</field>
+        <field name="model">escodoo.mis.cashflow</field>
+        <field name="arch" type="xml">
+            <form string="Cashflow" create="false" edit="false" delete="false">
+                <group>
+                    <group>
+                        <field name="date"/>
+                        <field name="name"/>
+                        <field name="partner_id" />
+                        <field name="account_id"/>
+                    </group>
+                    <group>
+                        <field name="debit"
+                            sum="Total"/>
+                        <field name="credit"
+                            sum="Total"/>
+                        <field name="line_type"/>
+                    </group>
+                </group>
+            </form>
+        </field>
+    </record>
 
     <record model="ir.ui.view" id="escodoo_mis_cashflow_tree_view">
         <field name="name">escodoo.mis.cashflow.tree (in escodoo_mis_builder_cashflow)</field>
         <field name="model">escodoo.mis.cashflow</field>
         <field name="arch" type="xml">
-            <tree>
+            <tree string="Cashflow" create="false" edit="false" delete="false">
                 <field name="line_type" />
                 <field name="date" />
                 <field name="name" />
@@ -67,5 +51,114 @@
             </tree>
         </field>
     </record>
+
+    <record model="ir.ui.view" id="escodoo_mis_cashflow_list_view">
+        <field name="name">escodoo.mis.cashflow.list (in escodoo_mis_builder_cashflow)</field>
+        <field name="model">escodoo.mis.cashflow</field>
+        <field name="arch" type="xml">
+            <tree string="Cashflow" toolbar="1" >
+                <field name="line_type" />
+                <field name="date" />
+                <field name="name" />
+                <field name="account_id" />
+                <field name="debit" />
+                <field name="credit" />
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="escodoo_mis_cashflow_pivot_view" >
+         <field name="name">escodoo.mis.cashflow.pivot (in escodoo_mis_builder_cashflow)</field>
+         <field name="model">escodoo.mis.cashflow</field>
+         <field name="arch" type="xml">
+             <pivot string="Cashflow">
+                 <field name="account_id" type="row"/>
+                 <field name="date" interval="month" type="col"/>
+                 <field name="credit" type="measure"/>
+                 <field name="debit" type="measure"/>
+             </pivot>
+         </field>
+    </record>
+
+    <record model="ir.ui.view" id="escodoo_mis_cashflow_timeline_view">
+        <field name="name">escodoo.mis.cashflow.timeline (in escodoo_mis_builder_cashflow)</field>
+        <field name="model">escodoo.mis.cashflow</field>
+        <field name="type">timeline</field>
+        <field name="arch" type="xml">
+            <timeline date_start="date"
+                      string="Cashflow"
+                      default_group_by="partner_id"
+                      event_open_popup="true"
+                      colors="#f6d3cf:debit > 0;#d4f6cf:credit >0;">
+                <field name="partner_id"/>
+                <field name="debit" />
+                <field name="credit" />
+                <field name="line_type" />
+                <templates>
+                    <t t-name="timeline-item">
+                        <div class="o_escodoo_cashflow_timeline_item">
+                            <img
+                                t-if="record.user_id"
+                                t-attf-src="/web/image/res.partner/#{record.partner_id[0]}/image_medium/16x16"
+                                t-att-title="record.partner_id[1]"
+                                width="16"
+                                height="16"
+                                class="mr8"
+                            />
+                            <span name="display_name">
+                                <t t-esc="record.display_name"/>
+                            </span>
+                            <span name="planned_hours">
+                                <t t-esc="record.date" />
+                            </span>
+                            <br/>
+                            <small name="debit" class="text-primary ml4" style="text-align::left;">debit:
+                                <t
+                                    t-esc="record.debit"
+                                />
+                            </small>
+                            <br/>
+                            <small name="credit" class="text-primary ml4" style="text-align::left;">credit:
+                                <t
+                                    t-esc="record.credit"
+                                />
+                            </small>
+                            <br/>
+                            <small name="date" class="text-primary text-left ml4">date:
+                                <t
+                                    t-esc="record.date"
+                                />
+                            </small>
+                        </div>
+                    </t>
+                </templates>
+            </timeline>
+        </field>
+    </record>
+
+
+<!--    <record id="escodoo_mis_cashflow_action" model="ir.actions.act_window">-->
+<!--            <field name="name">Cashflow Report</field>-->
+<!--            <field name="type">ir.actions.act_window</field>-->
+<!--            <field name="res_model">escodoo.mis.cashflow</field>-->
+<!--            <field name="view_mode">tree,form,pivot</field>-->
+<!--            <field name="view_type">tree</field>-->
+<!--        </record>-->
+
+    <record id="escodoo_mis_cashflow_action" model="ir.actions.act_window">
+            <field name="name">Cashflow Report</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">escodoo.mis.cashflow</field>
+            <field name="view_mode">tree,pivot,form,timeline</field>
+            <field name="view_id" eval="False"/>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,pivot,form,timeline</field>
+
+        </record>
+
+     <menuitem id="menu_escodoo_mis_cashflow_report"
+              name="Escodoo Cash flow"
+              action="escodoo_mis_cashflow_action"
+              parent="account.menu_finance_reports"/>
 
 </odoo>
