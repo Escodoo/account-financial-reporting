@@ -19,6 +19,12 @@
                             domain="[('company_id', '=', company_id)]"/>
                         <field name="name"/>
                         <field name="balance"/>
+                        <field name="res_model_id" />
+                        <field name="res_model" />
+                        <field name="res_id" />
+                        <field name="parent_res_model_id" />
+                        <field name="parent_res_model" />
+                        <field name="parent_res_id" />
                     </group>
                 </sheet>
             </form>
