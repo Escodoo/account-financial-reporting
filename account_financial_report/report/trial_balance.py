@@ -485,7 +485,7 @@ WHERE report_trial_balance_account.account_group_id = computed.account_group_id
         query_update_account_group = """
 DROP AGGREGATE IF EXISTS array_concat_agg(anyarray);
 CREATE AGGREGATE array_concat_agg(anyarray) (
-  SFUNC = array_cat,
+  SFUNC = array_larger,
   STYPE = anyarray
 );
 WITH aggr AS(WITH computed AS (WITH RECURSIVE cte AS (
